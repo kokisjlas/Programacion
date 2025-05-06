@@ -77,7 +77,6 @@ public class EJ2 {
 		 */
 
 		// EXCEPCION EVITABLE CONTROLADA POR TRY CATCH
-
 		try {
 			tareas.add(index, new Tarea(tarea, duracion));
 			int duracionPrevia = tareas1.get(tarea) == null ? 0 : tareas1.get(tarea);
@@ -100,16 +99,13 @@ public class EJ2 {
 
 	}
 
-	public static void modificarTarea(int index, String nombre, int duracion) {
+	public static void modificarTarea(int index, String tarea, int duracion) {
 		try {
-			Tarea nuevatarea = new Tarea(nombre, duracion);
-			for (int i = 0; i < tareas.size(); i++) {
 
-				if (i == index) {
-					tareas.set(index, nuevatarea);
-				}
-			}
-			tareas1.put(nombre, duracion);
+			removerTarea(index);
+			agregarTarea(index, tarea, duracion);
+
+
 		} catch (IndexOutOfBoundsException iobe) {
 			System.out.println("Posicion incorrecta");
 		}
@@ -124,7 +120,8 @@ public class EJ2 {
 				tareas1.remove(tareas.get(index).getNombre());
 
 			} else {
-				tareas1.put(tareas.get(index).getNombre(), tareas1.get(tareas.get(index).getNombre())-tareas.get(index).getDuracion());
+				tareas1.put(tareas.get(index).getNombre(),
+						tareas1.get(tareas.get(index).getNombre()) - tareas.get(index).getDuracion());
 
 			}
 			tareas.remove(index);
